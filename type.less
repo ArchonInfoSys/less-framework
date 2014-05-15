@@ -1,0 +1,28 @@
+.fancy-ampersand(@weight: normal) {
+	font-family: Baskerville, Caslon, Palatino, "Palatino Linotype", Constantia;
+	font-weight: @weight;
+	font-style: italic
+}
+
+#font-stack {
+	.rockwell() {
+		font-family: Rockwell, "RockwellStd-Bold";
+		.js & { opacity:0; }
+		.wf-inactive &,
+		.wf-loading & { }
+		.wf-inactive & { font-family: serif; }
+		.wf-active &,
+		.localfont-rockwell &,
+		.wf-inactive & { opacity: 1; }
+		.wf-active & {
+			font-family: Arvo, sans-serif;
+			font-weight: 700;
+		}
+	}
+	.gill-sans() {
+		font-family: Gill Sans, Gill Sans MT, Century Gothic, Helvetica, Verdana, sans-serif;
+	}
+	.mono() {
+		font-family: 'Source Code Pro', Consolas, Monaco, 'Lucida Console', 'DejaVu Sans Mono', 'Courier New', monospace;
+	}
+}

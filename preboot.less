@@ -1,0 +1,500 @@
+﻿// library & framework
+@import "constants.less";
+@import "modernizr_mixins.less";
+@import "_generate-sprite.less";
+@import "type.less";
+
+// Utilities
+.media-display(@type: print, @display: none, @valign: top) {
+	@media @type {
+		display: @display !important;
+	}
+}
+.media-display(@type: print, @display: none, @valign: top) when (@display = inline-block) {
+	@media @type {
+		.inline-block(@valign) !important;
+	}
+}
+
+// bootleg watch expressions
+.less-debug(@var,@var-label:'') { -x-less-debug: ~"@{var-label}: @{var}"; }
+
+// Solarized
+@sol-base03:    hsl(192.2, 100.0%, 10.6%);
+@sol-base02:    hsl(192.2,  80.8%, 14.3%);
+@sol-base01:    hsl(194.5,  14.1%, 40.2%);
+@sol-base00:    hsl(196.0,  12.9%, 45.5%);
+@sol-base0:     hsl(186.3,   8.3%, 55.1%);
+@sol-base1:     hsl(180.0,   6.9%, 60.4%);
+@sol-base2:     hsl( 45.6,  42.4%, 88.4%);
+@sol-base3:     hsl( 43.8,  86.7%, 94.1%);
+@sol-yellow:    hsl( 45.4, 100.0%, 35.5%);
+@sol-orange:    hsl( 17.6,  80.4%, 44.1%);
+@sol-red:       hsl(  1.0,  71.2%, 52.4%);
+@sol-magenta:   hsl(331.0,  64.1%, 52.0%);
+@sol-violet:    hsl(236.6,  42.7%, 59.6%);
+@sol-blue:      hsl(204.8,  69.4%, 48.6%);
+@sol-cyan:      hsl(175.5,  58.6%, 39.8%);
+@sol-green:     hsl( 67.8, 100.0%, 30.0%);
+
+// Baseline grid
+@baseline: 16px;
+
+// Mixins
+
+.replace-text() {
+	white-space: nowrap;
+	text-indent: 100%;
+	overflow: hidden;
+}
+
+.hicon() {
+	font-family: FontAwesome;
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: inherit;
+}
+
+.force-wrap() {
+// target must have "layout" to work in IE
+// (block or inline-block)
+	-webkit-hyphens: auto;
+	   -moz-hyphens: auto;
+	        hyphens: auto;
+
+	-ms-word-break: break-all;
+
+	// for webkit
+	word-break: break-word;
+
+	// for old ie
+	-ms-word-wrap: break-word;
+	    word-wrap: break-word;
+}
+
+.box-sizing(@boxmodel: border-box) {
+    -webkit-box-sizing: @boxmodel;
+       -moz-box-sizing: @boxmodel;
+        -ms-box-sizing: @boxmodel;
+            box-sizing: @boxmodel;
+}
+.box-sizing(@boxmodel: border-box) when (@boxmodel = border-box) {
+    .lt-ie8 & { behavior: url(/Content/scripts/lib/boxsizing.htc); }
+}
+
+.bg-clip(@box: padding-box) {
+    -webkit-background-clip: @box;
+       -moz-background-clip: @box;
+            background-clip: @box;
+}
+
+.invert() {
+	color: @highlightcolor;
+	background-color: @basecolor;
+}
+
+.shadify(@basecolor, @contrast: 1) {
+	@highlight: lighten(@basecolor,(20% * @contrast));
+	@shadow: darken(saturate(@basecolor, 15%), (25% * @contrast));
+	color: darken(@shadow, (35% * @contrast));
+	background-color: @basecolor;
+	box-shadow:
+		inset 0 0  2px  1px @highlight,
+		inset 0 0 12px -1px @shadow,
+		      0 0  5px  0   @shadow;
+}
+
+.shade-tb-btn(@tb-btn-color: #d0d0d0) {
+	background-color: @tb-btn-color;
+	color: darken(@tb-btn-color,45%);
+	border-color: darken(@tb-btn-color,10%);
+	box-shadow:
+		inset 1px 1px 0   0 #fff,
+		inset 0   2em 1em 0 lighten(@tb-btn-color,15%),
+				  0   1px 0   0 darken( @tb-btn-color, 5%),
+				  0   2px 0   0 darken( @tb-btn-color,20%);
+	text-shadow:
+		1px 1px 0 lighten(@tb-btn-color,25%);
+}
+
+.shade-tb-btn-pressed(@tb-btn-pressed-color: #eee) {
+	@pressed: darken(@tb-btn-pressed-color,25%);
+	background-color: @pressed;
+	color: #fff;
+	border-color: darken(@pressed,15%);
+	box-shadow:
+		inset 0 2em 1em -.5em darken(@pressed,10%);
+	text-shadow:
+		1px 1px 0 darken(@pressed,15%);
+}
+
+.indicator-led(@indicator-led-color: #888) {
+	background-color: #fff;
+	box-shadow:
+		inset 0 0 2px 0 saturate(@indicator-led-color,100%),
+		      0 0 8px 0 saturate(fadeout(@indicator-led-color,30%),100%);
+}
+
+.shade-bubble(@bubble-color: #eee) {
+@bubble-fade: fadeout(@bubble-color,85%);
+	background-color: lighten(@bubble-fade,25%);
+	color: darken(@bubble-color,18%);
+	border-color: darken(@bubble-fade,18%);
+	text-shadow:
+		1px 1px 0 #fff;
+}
+
+// checkbox and radio button replacement
+.replace-checkables() {
+	input[type="radio"], input[type="checkbox"] {
+		position: absolute;
+		.square(0);
+		clip: rect(0,0,0,0);
+		opacity: 0;
+	}
+}
+
+// Clearfix for clearing floats like a boss
+.clearfix() {
+	&:before,
+	&:after {
+		content: "";
+		display: table;
+	}
+	&:after { clear: both; }
+	zoom: 1; // trigger hasLayout in IE6-7
+}
+
+// Center-align a block level element
+.center-block() {
+	display: block;
+	margin: 0 auto;
+}
+
+// Sizing shortcuts
+.size(@height: 5px, @width: 5px) {
+	width: @width;
+	height: @height;
+}
+.square(@size: 5px) { .size(@size, @size); }
+
+// Input placeholder text
+.placeholder(@color: @sol-base02, @font-style: italic) {
+	&::-webkit-input-placeholder { color: @color; font-style: @font-style; }
+	     &:-ms-input-placeholder { color: @color; font-style: @font-style; }
+	          &:-moz-placeholder { color: @color; font-style: @font-style; }	
+}
+
+// Font Stacks
+@default_fontsize: @baseline * .6;
+
+#font {
+	.ss() { font-family: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif; }
+	.shorthand(@weight: normal, @size: @default_fontsize, @lineHeight: @baseline) {
+		font-size: @size;
+		font-weight: @weight;
+		line-height: @lineHeight;
+	}
+	.sans-serif(@weight: normal, @size: @default_fontsize, @lineHeight: 20px) {
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-size: @size;
+		font-weight: @weight;
+		line-height: @lineHeight;
+	}
+	.serif(@weight: normal, @size: @default_fontsize, @lineHeight: 20px) {
+		font-family: "Georgia", Times New Roman, Times, sans-serif;
+		font-size: @size;
+		font-weight: @weight;
+		line-height: @lineHeight;
+	}
+	.monospace(@weight: normal, @size: @default_fontsize, @lineHeight: 20px) {
+		font-family: "Monaco", Courier New, monospace;
+		font-size: @size;
+		font-weight: @weight;
+		line-height: @lineHeight;
+	}
+	.fontawesome(@size: @default_fontsize, @lineHeight: @baseline) {
+		font-family: FontAwesome;
+		font-size: @size;
+		font-weight: normal;
+		font-style: normal;
+		line-height: @lineHeight;
+	}
+	.zeroout(@size: 0){
+	font-size: @size;
+	}
+}
+
+// Grid System
+//.container() {
+//  width: @siteWidth;
+//  margin: 0 auto;
+//  .clearfix();
+//}
+//.columns(@columnSpan: 1) {
+//  display: inline;
+//  float: left;
+//  width: (@gridColumnWidth * @columnSpan) + (@gridGutterWidth * (@columnSpan - 1));
+//  margin-left: @gridGutterWidth;
+//  &:first-child {
+//    margin-left: 0;
+//  }
+//}
+//.offset(@columnOffset: 1) {
+//  margin-left: (@gridColumnWidth * @columnOffset) + (@gridGutterWidth * (@columnOffset - 1)) !important;
+//}
+
+// Border Radius
+
+@radius-def: 5px;
+
+.border-radius(@radius: @radius-def) {
+	border-radius: @radius;
+}
+.round-all(  @radius: @radius-def) { border-radius:              @radius;  }
+.roundtop(   @radius: @radius-def) { border-top-right-radius:    @radius; border-top-left-radius:     @radius; }
+.roundbottom(@radius: @radius-def) { border-bottom-right-radius: @radius; border-bottom-left-radius:  @radius; }
+.roundright( @radius: @radius-def) { border-top-right-radius:    @radius; border-bottom-right-radius: @radius; }
+.roundleft(  @radius: @radius-def) { border-top-left-radius:     @radius; border-bottom-left-radius:  @radius; }
+.round-t(    @radius: @radius-def) { .roundtop(                  @radius); }
+.round-r(    @radius: @radius-def) { .roundright(                @radius); }
+.round-b(    @radius: @radius-def) { .roundbottom(               @radius); }
+.round-l(    @radius: @radius-def) { .roundleft(                 @radius); }
+.round-tr(   @radius: @radius-def) { border-top-right-radius:    @radius;  }
+.round-br(   @radius: @radius-def) { border-bottom-right-radius: @radius;  }
+.round-tl(   @radius: @radius-def) { border-top-left-radius:     @radius;  }
+.round-bl(   @radius: @radius-def) { border-bottom-left-radius:  @radius;  }
+
+// Drop shadows
+.box-shadow(@shadow: 0 1px 3px rgba(0,0,0,.25)) { box-shadow: @shadow; }
+
+.textshadow(@x: 1, @y: 1, @blur: 0, @color: #fff) {
+    @ms-color: argb(@color);
+    @ms-color-uppercase: @ms-color;
+    text-shadow: ~'@{x}px @{y}px @{blur}px @{color}';
+    filter: ~"progid:DXImageTransform.Microsoft.DropShadow(OffX=@{x}, OffY=@{y}, Color='@{ms-color-uppercase}')progid:DXImageTransform.Microsoft.Blur(pixelradius=@{blur})";
+}
+
+// Transitions
+.transition(@arguments) {
+  -webkit-transition: @arguments;
+     -moz-transition: @arguments;
+      -ms-transition: @arguments;
+          transition: @arguments;
+}
+.transition-property(@arguments) {
+  -webkit-transition-property: @arguments;
+     -moz-transition-property: @arguments;
+      -ms-transition-property: @arguments;
+          transition-property: @arguments;
+}
+.transition-duration(@arguments) {
+  -webkit-transition-duration: @arguments;
+     -moz-transition-duration: @arguments;
+      -ms-transition-duration: @arguments;
+          transition-duration: @arguments;
+}
+.transition-timing-function(@arguments) {
+  -webkit-transition-timing-function: @arguments;
+     -moz-transition-timing-function: @arguments;
+      -ms-transition-timing-function: @arguments;
+          transition-timing-function: @arguments;
+}
+.transition-delay(@arguments) {
+  -webkit-transition-delay: @arguments;
+     -moz-transition-delay: @arguments;
+      -ms-transition-delay: @arguments;
+          transition-delay: @arguments;
+}
+
+// Transforms
+.transform(@transform) {
+  -webkit-transform: @arguments;
+     -moz-transform: @arguments;
+      -ms-transform: @arguments;
+          transform: @arguments;
+  -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+     -ms-backface-visibility: hidden;
+         backface-visibility: hidden;
+-webkit-font-smoothing: antialiased;
+}
+
+.transform-origin(@origin) {
+-webkit-transform-origin: @arguments;
+   -moz-transform-origin: @arguments;
+    -ms-transform-origin: @arguments;
+        transform-origin: @arguments;
+}
+
+// CSS3 Content Columns
+.content-columns(@columnCount, @columnGap: 20px) {
+	-webkit-column-count: @columnCount;
+	   -moz-column-count: @columnCount;
+	        column-count: @columnCount;
+  -webkit-column-gap: @columnGap;
+     -moz-column-gap: @columnGap;
+	        column-gap: @columnGap;
+}
+
+// Add an alphatransparency value to any background or border color (via Elyse Holladay)
+#translucent {
+	.background(@color: white, @alpha: 1) {
+		background-color: fade(@color,percentage(@alpha));
+	}
+	.border(@color: white, @alpha: 1) {
+		border-color: fade(@color,percentage(@alpha));
+		background-clip: padding-box;
+	}
+}
+
+// Gradients
+#gradient {
+    .h (@start: #555, @end: #333) {
+	    @start-argb: argb(@start);
+        @end-argb: argb(@end);
+        background-color: @end; // fallback
+        background-repeat: repeat-x;
+        background-image: -moz-linear-gradient(left, @start, @end); // FF 3.6+
+        background-image: -ms-linear-gradient(left, @start, @end); // IE10
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, @start), color-stop(100%, @end)); // Safari 4+, Chrome 2+
+        background-image: -webkit-linear-gradient(left, @start, @end); // Safari 5.1+, Chrome 10+
+        background-image: linear-gradient(left, @start, @end); // the standard
+    }
+
+    .v (@start: #555, @end: #333) {
+	    @start-argb: argb(@start);
+        @end-argb: argb(@end);
+        background-color: @end;
+        background-repeat: repeat-x;
+        background-image: -moz-linear-gradient(@start, @end); // FF 3.6+
+        background-image: -ms-linear-gradient(@start, @end); // IE10
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @start), color-stop(100%, @end)); // Safari 4+, Chrome 2+
+        background-image: -webkit-linear-gradient(@start, @end); // Safari 5.1+, Chrome 10+
+        background-image: linear-gradient(@start, @end); // the standard
+    }
+
+    .directional (@start: #555, @end: #333, @angle: 45deg) {
+        background-color: @end;
+        background-repeat: repeat-x;
+        background-image: -moz-linear-gradient(@angle, @start, @end); // FF 3.6+
+        background-image: -ms-linear-gradient(@angle, @start, @end); // IE10
+        background-image: -webkit-linear-gradient(@angle, @start, @end); // Safari 5.1+, Chrome 10+
+        background-image: linear-gradient(@angle, @start, @end); // the standard
+    }
+
+    .v-3(@start: #00b3ee, @mid: #7a43b6, @stop: 0.5, @end: #c3325f) {
+        background-color: @end;
+        background-repeat: no-repeat;
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@start), color-stop(@stop, @mid), to(@end));
+        background-image: -webkit-linear-gradient(@start, color-stop(@stop, @mid), @end);
+        background-image: -moz-linear-gradient(@start, color-stop(@mid, @stop), @end);
+    }
+}
+// Opacity
+.opacity(@out-of-100: 100) {
+	@opacity: @out-of-100;
+}
+.opacity(@out-of-100: 100) when (@out-of-100 > 0) {
+	@opacity: @out-of-100;
+	opacity: @opacity / 100;
+	@ie-opacity: round(@opacity,0);
+	@ie8-filter: ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{ie-opacity})";
+	-ms-filter: "@{ie8-filter}";
+	filter: ~"alpha(opacity=@{ie-opacity})";
+}
+.opacity(@out-of-100: 100) when (@out-of-100 = 0) {;
+	@opacity: @out-of-100;
+	opacity: 0;
+	@ie-opacity: round(@opacity,0);
+	@ie8-filter: ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{ie-opacity})";
+	-ms-filter: "@{ie8-filter}";
+	filter: ~"alpha(opacity=@{ie-opacity})";
+}
+
+
+// Overlay for generated content
+.overlay(@opacity: 0.5, @z-index: -1) {
+	display:block;
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	content:"";
+	pointer-events: none;
+	z-index: @z-index;
+	opacity: @opacity;
+}
+
+.noselect() { .user-select(none); }
+
+.user-select(@select) {
+	-webkit-user-select: @select;
+	   -moz-user-select: @select;
+	    -ms-user-select: @select;
+	        user-select: @select;
+}
+
+// shadows to indicate edge of scrolling overflow content not reached
+.this-could-get-long(@base: hsl(43.8, 12.7%, 98.2%)) {
+	@cl-ovf-base: @base;
+	@cl-ovf-shd0: darken(@cl-ovf-base,60%);
+	@amt-ovf-shd: 20%;
+	@sz-ovf-shd: 14px;
+	@sz-ovf-mask: 120px;
+	overflow: auto;
+
+	background:
+		/* Shadow covers */
+		linear-gradient(@cl-ovf-base 30%, fade(@cl-ovf-base,0)),
+		linear-gradient(fade(@cl-ovf-base,0), @cl-ovf-base 70%) 0 100%,
+		
+		/* Shadows */
+		radial-gradient(50% 0, farthest-side, fade(@cl-ovf-shd0,@amt-ovf-shd), fade(@cl-ovf-shd0,0)),
+		radial-gradient(50% 100%,farthest-side, fade(@cl-ovf-shd0,@amt-ovf-shd), fade(@cl-ovf-shd0,0)) 0 100%;
+	background:
+		/* Shadow covers */
+		linear-gradient(@cl-ovf-base 30%, fade(@cl-ovf-base,0)),
+		linear-gradient(fade(@cl-ovf-base,0), @cl-ovf-base 70%) 0 100%,
+		
+		/* Shadows */
+		radial-gradient(farthest-side at 50% 0, fade(@cl-ovf-shd0,@amt-ovf-shd), fade(@cl-ovf-shd0,0)),
+		radial-gradient(farthest-side at 50% 100%, fade(@cl-ovf-shd0,@amt-ovf-shd), fade(@cl-ovf-shd0,0)) 0 100%;
+	background-repeat: no-repeat;
+	background-size: 100% @sz-ovf-mask, 100% @sz-ovf-mask, 100% @sz-ovf-shd, 100% @sz-ovf-shd;
+
+	background-color: @cl-ovf-base;
+	
+	/* Opera doesn't support this in the shorthand */
+	background-attachment: local, local, scroll, scroll;
+}
+
+.admin-titlebar-text() {
+	#font-stack > .gill-sans();
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.caliper(@cl-base: hsl(200, 7.7%, 86.7%), @ln-thickness: 1em, @ln-arrow: (@ln-thickness / 2)) {
+		@cl-mute: desaturate(@cl-base,30%);
+		@ln-arrow-offset: -(@ln-thickness + (@ln-arrow * 2));
+		position: relative;
+		border-left-color: @cl-base;
+		border-style: solid;
+		border-width: 0 0 0 @ln-thickness;
+		margin: 0 0 0 -(@ln-thickness);
+//		#gradient > .v(fade(@cl-base,10%),fade(@cl-mute,0%));
+		&:after {
+			position: absolute;
+			content: '';
+			display: block;
+			border: @ln-arrow solid transparent;
+			border-right-color: @cl-base;
+			left: @ln-arrow-offset;
+			top: 50%;
+			margin-top: -@ln-arrow;
+		}
+}

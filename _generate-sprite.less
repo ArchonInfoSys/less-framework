@@ -1,0 +1,47 @@
+// sprite generating stuff: "hr" is for high pixel density devices
+
+@sprite-tile-size: 16px;
+@sprite-tile-size-x: @sprite-tile-size;
+@sprite-tile-size-y: @sprite-tile-size;
+@hr-px-ratio: 2;
+
+.sprite-url(@path: '', @ext: 'png') { background-image: ~'url("../img/sprites/@{path}.@{ext}")'; }
+
+.sprite-url-hr(@path: '', @ext: 'png', @px-ratio: @hr-px-ratio) {
+	@result-dpi: @px-ratio * 96;
+	@result-minres: ~'@{result-dpi}dpi';
+
+	@media
+	(-webkit-min-device-pixel-ratio: @px-ratio),
+	(min-resolution: @result-minres)
+		{ background-image: ~'url("../img/sprites/@{path}-@{px-ratio}x.@{ext}")'; }
+}
+
+// pass the 1x sprite's pixel dimensions to this to scale high res sprites and reuse coordinates
+.sprite-bg-size-hr(@size-x: @sprite-tile-size-x, @size-y: @sprite-tile-size-y, @px-ratio: @hr-px-ratio) {
+	@result-dpi: @px-ratio * 96;
+	@result-minres: ~'@{result-dpi}dpi';
+
+	@media
+	(-webkit-min-device-pixel-ratio: @px-ratio),
+	(min-resolution: @result-minres)
+		{ background-size: @size-x @size-y; }
+}
+
+.sprite-size(@size-x: @sprite-tile-size-x, @size-y: @sprite-tile-size-y) {
+	width:  @size-x;
+	height: @size-y;
+	background-position: 0 0;
+}
+
+// sprite offset: feed this an offset coefficient and tile sizes,
+// and it will compute the resulting offset coordinates in pixels.
+.sproff(@offs-x: 0, @offs-y: 0, @size-x: @sprite-tile-size-x, @size-y: @sprite-tile-size-y) {
+	@result-x: -(@offs-x * @size-x);
+	@result-y: -(@offs-y * @size-y);
+	background-position: @result-x @result-y;
+}
+
+.sproff-sr(   @offs: 0, @size: @sprite-tile-size-x ) { .sproff( @offs,     0, @size,     0 ); } // single row: horizontal offset only
+.sproff-sc(   @offs: 0, @size: @sprite-tile-size-y ) { .sproff(     0, @offs,     0, @size ); } // single column: vertical offset only
+.sproff-diag( @offs: 0, @size: @sprite-tile-size   ) { .sproff( @offs, @offs, @size, @size ); } // for diagonal sprites

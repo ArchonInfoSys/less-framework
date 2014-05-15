@@ -1,0 +1,17 @@
+// fallback mixins for use with Modernizr
+@text-size: 10px;
+
+.inline-block(@vertical-align: top, @font-size: @text-size) {
+	display: inline-block;
+	.lt-ie8 & {
+	// inline-block for IE6 and IE7
+		display: inline;
+		zoom: 1;
+	}
+	vertical-align: @vertical-align;
+}
+
+.inline-block-container(@spacing: 0, @text-align: left, @wrapping: normal) {
+	text-align: @text-align;
+	white-space: @wrapping;
+}
