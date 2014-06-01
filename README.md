@@ -5,7 +5,7 @@ These are some boilerplate LESS styles and mixins we use all over the CivicSourc
 ## Install with [Bower](http://bower.io/)
 
 ```
-bower install https://github.com/ArchonInfoSys/less-framework
+bower install ArchonInfoSys/less-framework
 ```
 
 Then reference `preboot.less` from any LESS stylesheet in your project.
