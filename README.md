@@ -11,5 +11,5 @@ bower install ArchonInfoSys/less-framework
 Then reference `preboot.less` from any LESS stylesheet in your project.
 
 ```less
-@import "path/to/preboot.less";
+@import (reference) "path/to/preboot.less";
 ```
