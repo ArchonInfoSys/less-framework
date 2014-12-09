@@ -27,7 +27,8 @@
 
 			&pull-card__ {
 				&container {
-					.well;
+					&:extend(.well);
+					&:extend(.hedr-top-container);
 					position: relative;
 					top: -(@ln-card-offset-top);
 					margin-right: -(@grid-gutter-width / 2);
@@ -171,12 +172,12 @@
 	}
 }
 
-.hedr-top-container() {
+.hedr-top-container {
 	display: block;
 	min-height: 10em;
 }
 
-.hedr-indicator() {
+.hedr-indicator {
 	border-top: @padding-large-vertical solid;
 	margin: 0 -(@grid-gutter-width / 2);
 }

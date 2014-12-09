@@ -23,15 +23,24 @@ middle
 
 ##Example
 <div class="hedr__container">
-	<div class="row">
+	<div class="clearfix">
 		<div class="col-md-4 col-sm-6">
-			left
+			<div class="hedr__pull-card__container">
+				Pull card
+			</div>
 		</div>
 		<div class="col-md-4 col-md-push-4 col-sm-6">
-			right
+			<div class="hedr__amount__container hedr__amount__status--paid">
+				<div class="hedr__amount__indicator"></div>
+				Info
+			</div>
 		</div>
 		<div class="col-md-4 col-md-pull-4 col-sm-12">
-			middle
+			<div class="hedr__info__container">
+				<div class="hedr__info__indicator"></div>
+				Amount
+				<hr class="hedr__perf" />
+			</div>
 		</div>
 	</div>
 </div>
@@ -39,15 +48,24 @@ middle
 ##Source
 ```html
 <div class="hedr__container">
-	<div class="row">
+	<div class="clearfix">
 		<div class="col-md-4 col-sm-6">
-			left
+			<div class="hedr__pull-card__container">
+				Pull card
+			</div>
 		</div>
 		<div class="col-md-4 col-md-push-4 col-sm-6">
-			right
+			<div class="hedr__amount__container hedr__amount__status--paid">
+				<div class="hedr__amount__indicator"></div>
+				Info
+			</div>
 		</div>
 		<div class="col-md-4 col-md-pull-4 col-sm-12">
-			middle
+			<div class="hedr__info__container">
+				<div class="hedr__info__indicator"></div>
+				Amount
+				<hr class="hedr__perf" />
+			</div>
 		</div>
 	</div>
 </div>
