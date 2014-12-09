@@ -5,6 +5,7 @@
   "repository": "https://github.com/civicsource/less-framework.git",
   "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-contrib-less": "^0.12.0"
+    "grunt-contrib-less": "^0.12.0",
+    "grunt-markdown": "^0.6.1"
   }
 }
