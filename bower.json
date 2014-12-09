@@ -1,24 +1,27 @@
 {
-  "name": "less-framework",
-  "version": "1.0.0",
-  "authors": [
-    "Mark D'Arensbourg <mdarens@gmail.com>"
-  ],
-  "description": "Internal LESS framework files",
-  "main": "preboot.less",
-  "keywords": [
-    "less",
-    "mixin",
-    "css",
-    "framework"
-  ],
-  "license": "MIT",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ]
+	"name": "less-framework",
+	"version": "1.0.0",
+	"authors": [
+		"Archon Information Systems, LLC."
+	],
+	"description": "Internal LESS framework files",
+	"main": "preboot.less",
+	"keywords": [
+		"less",
+		"mixin",
+		"css",
+		"framework"
+	],
+	"license": "MIT",
+	"private": true,
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	],
+	"dependencies": {
+		"bootstrap": "~3.3.1"
+	}
 }
