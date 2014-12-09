@@ -35,5 +35,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-markdown");
 	grunt.loadNpmTasks("grunt-gh-pages");
 
-	grunt.registerTask("default", ["less", "markdown", "gh-pages"]);
+	grunt.registerTask("default", ["less", "markdown"]);
+	grunt.registerTask("publish", ["less", "markdown", "gh-pages"]);
 };

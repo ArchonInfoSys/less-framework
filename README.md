@@ -23,7 +23,9 @@ Clone the repo, then run:
 ```
 npm install
 bower install
-grunt
+grunt publish
 ```
 
 This will build the style guide into the `build` folder and push the results to the `gh-pages` branch on the remote named `origin`.
+
+If you just want to build the style guide to view locally, just run `grunt` and you can view `build/index.html`.
