@@ -22,11 +22,18 @@ module.exports = function(grunt) {
 				src: "style-guide/index.md",
 				dest: "build/index.html"
 			}
+		},
+		'gh-pages': {
+			options: {
+				base: "build"
+			},
+			src: ["**"]
 		}
 	});
 
 	grunt.loadNpmTasks("grunt-contrib-less");
 	grunt.loadNpmTasks("grunt-markdown");
+	grunt.loadNpmTasks("grunt-gh-pages");
 
-	grunt.registerTask("default", ["less", "markdown"]);
+	grunt.registerTask("default", ["less", "markdown", "gh-pages"]);
 };

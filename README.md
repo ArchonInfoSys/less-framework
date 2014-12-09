@@ -15,3 +15,15 @@ Then reference `preboot.less` from any LESS stylesheet in your project.
 ```less
 @import (reference) "bower_components/less-framework/preboot.less";
 ```
+
+## How to Build the `gh-pages` Style Guide
+
+Clone the repo, then run:
+
+```
+npm install
+bower install
+grunt
+```
+
+This will build the style guide into the `build` folder and push the results to the `gh-pages` branch on the remote named `origin`.
