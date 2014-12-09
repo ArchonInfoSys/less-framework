@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>{{title}}</title>
+
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="https://jmblog.github.com/color-themes-for-highlightjs/css/themes/tomorrow-night.css" rel="stylesheet" />
+
+	{{#each components}}
+		<link href="{{styles}}.css" rel="stylesheet" />
+	{{/each}}
+</head>
+
+<body>
+	<div class="container">
+
+		<div class="jumbotron">
+			<h1>{{title}}</h1>
+			<p>{{description}}</p>
+		</div>
+
+		{{{contents}}}
+		<hr />
+
+		{{#each components}}
+			<h2>{{title}}</h2>
+			<p>{{description}}</p>
+
+			<div>
+				{{{contents}}}
+			</div>
+
+			<hr />
+		{{/each}}
+	</div>
+</body>
+</html>

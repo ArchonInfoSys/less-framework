@@ -8,19 +8,48 @@ module.exports = function(grunt) {
 				},
 				files: [{
 					expand: true,
-					src: ["*.less"],
+					src: [
+						"**/*.less",
+						"!node_modules/**/*.less",
+						"!bower_components/**/*.less"
+					],
 					dest: "build/",
 					ext: ".less.css"
 				}]
 			}
 		},
-		markdown: {
+		copy: {
+			components: {
+				files: [{
+					expand: true,
+					src: [
+						"**/readme.md",
+						"!bower_components/**/*",
+						"!node_modules/**/*",
+						"!style-guide/**/*"
+					],
+					dest: "./style-guide/contents/components/"
+				}]
+			}
+		},
+		metalsmith: {
 			options: {
-				template: "style-guide/layout.html"
+				metadata: {},
+				plugins: {
+					"metalsmith-collections": {
+						components: "components/**/*.md"
+					},
+					"metalsmith-markdown": {},
+					"metalsmith-templates": {
+						engine: "handlebars",
+						directory: "./style-guide/templates"
+					},
+					"metalsmith-drafts": {}
+				}
 			},
-			dev: {
-				src: "style-guide/index.md",
-				dest: "build/index.html"
+			styleguide: {
+				src: "style-guide/contents",
+				dest: "build"
 			}
 		},
 		'gh-pages': {
@@ -32,9 +61,10 @@ module.exports = function(grunt) {
 	});
 
 	grunt.loadNpmTasks("grunt-contrib-less");
-	grunt.loadNpmTasks("grunt-markdown");
+	grunt.loadNpmTasks("grunt-metalsmith");
 	grunt.loadNpmTasks("grunt-gh-pages");
+	grunt.loadNpmTasks("grunt-contrib-copy");
 
-	grunt.registerTask("default", ["less", "markdown"]);
-	grunt.registerTask("publish", ["less", "markdown", "gh-pages"]);
+	grunt.registerTask("default", ["copy", "metalsmith", "less"]);
+	grunt.registerTask("publish", ["copy", "metalsmith", "less", "gh-pages"]);
 };

@@ -1,7 +1,9 @@
-<link rel="stylesheet" href="hedr.less.css" />
-
-#`hedr`, The Responsive Header
-This component shows 3 columns, and collapses into alternate layouts based on viewport width:
+---
+title: Responsive Header
+description: This component shows 3 columns, and collapses into alternate layouts based on viewport width
+styles: hedr/hedr.less
+draft: true
+---
 
 Large/Medium:
 ```
@@ -10,8 +12,8 @@ left  middle  right
 
 Small:
 ```
- left right 
-   middle   
+ left right
+   middle
 ```
 
 Extra Small:
@@ -22,6 +24,7 @@ middle
 ```
 
 ##Example
+
 <div class="hedr__container">
 	<div class="clearfix">
 		<div class="col-md-4 col-sm-6">
