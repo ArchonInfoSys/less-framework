@@ -1,0 +1,182 @@
+@import (reference) "bower_components/bootstrap/less/variables.less";
+@import (reference) "bower_components/bootstrap/less/mixins.less";
+@import (reference) "bower_components/bootstrap/less/grid.less";
+@import (reference) "bower_components/bootstrap/less/wells.less";
+.hedr() !important;
+
+.hedr() {
+	@cl-hedr-base: hsl(214.3, 28%, 29.4%);
+	@cl-hedr-muted: lighten(desaturate(spin(@cl-hedr-base,9.5), 14.6%), 32.6%);
+
+	@cl-danger: @state-danger-text;
+	@cl-success: hsl(92, 77%, 43%);
+
+	@cl-hedr-alert: hsl(45.4, 100%, 48.4%);
+	.hedr {
+		@ln-card-offset-top: (2 * @padding-large-vertical);
+		&__ {
+			&container {
+				background-color: #fff;
+				padding-top: @ln-card-offset-top;
+			}
+			&address {
+				margin: 0;
+				font-size: @font-size-h5;
+				color: @cl-hedr-muted;
+			}
+
+			&pull-card__ {
+				&container {
+					.well;
+					position: relative;
+					top: -(@ln-card-offset-top);
+					margin-right: -(@grid-gutter-width / 2);
+					margin-bottom: 0;
+					@media only screen and (max-width: @screen-xs-max) {
+						margin-left: -(@grid-gutter-width / 2);
+						top: 0 !important;
+						border-radius: 0;
+						border: none;
+					}
+					z-index: 1;
+				}
+
+				&account-number {
+					color: @cl-hedr-base;
+					margin: 0 0 @padding-base-vertical 0;
+					font-weight: bold;
+				}
+
+				&address {
+					font-size: @font-size-h4;
+					color: @cl-hedr-muted;
+				}
+
+				&icon {
+					margin: -.3em;
+					&__{
+						&property-type {
+						}
+					}
+					.fa-ban.in {
+						opacity: .875;
+						text-shadow: 1px 1px 0 #fff;
+					}
+				}
+			}
+
+			&amount__ {
+				&container {
+					position: relative;
+					top: 0;
+					&:extend(.hedr-top-container);
+					text-decoration: none; // it's a link
+				}
+				&indicator {
+					&:extend(.hedr-indicator all);
+				}
+				&status {
+					sup {
+						top: 0;
+						vertical-align: 18%;
+						line-height: @headings-line-height;
+					}
+					&--{
+						&not-paid {
+							color: @cl-danger;
+							a:hover &,
+							a:focus & {
+								color: darken(@cl-danger, 8%)
+							}
+						}
+						&paid {
+							color: @cl-success;
+							a:hover &,
+							a:focus & {
+								color: darken(@cl-success, 8%)
+							}
+						}
+					}
+				}
+			}
+
+			&perf {
+				border-style: dashed;
+				border-width: 1px 0 0 0;
+				border-color: fade(#000,15%);
+			}
+
+			&info {
+				&__ {
+					&container {
+						&:extend(.hedr-top-container);
+						@media only screen and (min-width: @screen-md-min) {
+							&:after {
+								display: block;
+								content: '';
+								position: absolute;
+								top: 0;
+								right: 0;
+								bottom: 0;
+								border-right: 1px dashed fade(#000,15%);
+							}
+						}
+					}
+
+					&icon {
+						color: @cl-hedr-muted;
+						fill: @cl-hedr-muted;
+						padding-right: 10px;
+						svg {
+							.square(3em);
+						}
+						path {
+							fill: @cl-hedr-muted;
+						}
+						.fa {
+							line-height: round(@line-height-base,1);
+						}
+					}
+
+					&headline,
+					&indicator {
+						color: @cl-hedr-base;
+					}
+
+					&indicator {
+						&:extend(.hedr-indicator all);
+					}
+				}
+			}
+			&history__{
+				&item {
+					&__{
+						&icon {
+							color: @cl-hedr-muted
+						}
+					}
+				}
+			}
+			&alert__{
+				&item {
+					margin: @padding-base-vertical 0;
+					&__{
+						&icon {
+							color: @cl-hedr-alert;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.hedr-top-container() {
+	display: block;
+	min-height: 10em;
+}
+
+.hedr-indicator() {
+	border-top: @padding-large-vertical solid;
+	margin: 0 -(@grid-gutter-width / 2);
+}
