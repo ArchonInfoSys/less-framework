@@ -17,11 +17,48 @@
 			<p>Checkout the components below and view source to see how it is put together.</p>
 		</div>
 
-		<link rel="stylesheet" href="demo.less.css" />
+		<link rel="stylesheet" href="hedr.less.css" />
 
-<p>Here is a <span class="placeholder">placeholder</span>
-Add a reference to <code>demo.less</code> and use it like so:</p>
-<pre><code class="lang-html">&lt;span class=&quot;placeholder&quot;&gt;placeholder&lt;/span&gt;</code></pre>
+<h1 id="-hedr-the-responsive-header"><code>hedr</code>, The Responsive Header</h1>
+<p>This component shows 3 columns, and collapses into alternate layouts based on viewport width:</p>
+<p>Large/Medium:</p>
+<pre><code>left  middle  right</code></pre>
+<p>Small:</p>
+<pre><code> left right 
+   middle</code></pre>
+<p>Extra Small:</p>
+<pre><code>left
+right
+middle</code></pre>
+<h2 id="example">Example</h2>
+<div class="hedr__container">
+    <div class="row">
+        <div class="col-md-4 col-sm-6">
+            left
+        </div>
+        <div class="col-md-4 col-md-push-4 col-sm-6">
+            right
+        </div>
+        <div class="col-md-4 col-md-pull-4 col-sm-12">
+            middle
+        </div>
+    </div>
+</div>
+
+<h2 id="source">Source</h2>
+<pre><code class="lang-html">&lt;div class=&quot;hedr__container&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-md-4 col-sm-6&quot;&gt;
+            left
+        &lt;/div&gt;
+        &lt;div class=&quot;col-md-4 col-md-push-4 col-sm-6&quot;&gt;
+            right
+        &lt;/div&gt;
+        &lt;div class=&quot;col-md-4 col-md-pull-4 col-sm-12&quot;&gt;
+            middle
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
 
 	</div>
 </body>
