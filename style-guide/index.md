@@ -33,7 +33,7 @@ middle
 			<div class="hedr__amount__container hedr__amount__status--paid">
 				<div class="hedr__amount__indicator"></div>
 				<div class="text-center">
-					<h2 class="prop-hed__amount-due__status prop-hed__amount-due__status--paid">$1,555<sup>.55</sup></h2>
+					<h2 class="prop-hed__amount__status prop-hed__amount__status--paid">$1,555<sup>.55</sup></h2>
 				</div>
 			</div>
 		</div>
@@ -60,7 +60,7 @@ middle
 			<div class="hedr__amount__container hedr__amount__status--paid">
 				<div class="hedr__amount__indicator"></div>
 				<div class="text-center">
-					<h2 class="prop-hed__amount-due__status prop-hed__amount-due__status--paid">$1,555<sup>.55</sup></h2>
+					<h2 class="prop-hed__amount__status prop-hed__amount__status--paid">$1,555<sup>.55</sup></h2>
 				</div>
 			</div>
 		</div>
