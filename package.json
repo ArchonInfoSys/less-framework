@@ -1,0 +1,10 @@
+{
+  "name": "less-framework",
+  "version": "1.0.0",
+  "private": true,
+  "repository": "https://github.com/civicsource/less-framework.git",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-less": "^0.12.0"
+  }
+}
