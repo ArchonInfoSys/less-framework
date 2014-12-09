@@ -32,13 +32,13 @@ middle
 		<div class="col-md-4 col-md-push-4 col-sm-6">
 			<div class="hedr__amount__container hedr__amount__status--paid">
 				<div class="hedr__amount__indicator"></div>
-				Info
+				Amount
 			</div>
 		</div>
 		<div class="col-md-4 col-md-pull-4 col-sm-12">
 			<div class="hedr__info__container">
 				<div class="hedr__info__indicator"></div>
-				Amount
+				Info
 				<hr class="hedr__perf" />
 			</div>
 		</div>
@@ -57,13 +57,13 @@ middle
 		<div class="col-md-4 col-md-push-4 col-sm-6">
 			<div class="hedr__amount__container hedr__amount__status--paid">
 				<div class="hedr__amount__indicator"></div>
-				Info
+				Amount
 			</div>
 		</div>
 		<div class="col-md-4 col-md-pull-4 col-sm-12">
 			<div class="hedr__info__container">
 				<div class="hedr__info__indicator"></div>
-				Amount
+				Info
 				<hr class="hedr__perf" />
 			</div>
 		</div>
