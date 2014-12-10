@@ -18,11 +18,24 @@
 			&container {
 				background-color: #fff;
 				padding-top: @ln-card-offset-top;
+				.make-row();
 			}
 			&address {
 				margin: 0;
 				font-size: @font-size-h5;
 				color: @cl-hedr-muted;
+			}
+			&col--{
+				&l, &m, &r {
+					.make-md-column(4);
+				}
+				&l, &r {
+					.make-sm-column(6);
+				}
+				&m {
+					.make-md-column-pull(4);
+					.make-sm-column(12);
+				}
 			}
 
 			&pull-card__ {
@@ -33,6 +46,7 @@
 					top: -(@ln-card-offset-top);
 					margin-right: -(@grid-gutter-width / 2);
 					margin-bottom: 0;
+					margin-left: -(@grid-gutter-width / 2);
 					@media only screen and (max-width: @screen-xs-max) {
 						margin-left: -(@grid-gutter-width / 2);
 						top: 0 !important;
