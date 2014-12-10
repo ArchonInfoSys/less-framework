@@ -26,8 +26,15 @@
 		{{{contents}}}
 		<hr />
 
+		<dl>
+			{{#each components}}
+			<dt><a href="#{{title}}">{{title}}</a></dt>
+			<dd>{{description}}</dd>
+			{{/each}}
+		</dl>
+
 		{{#each components}}
-			<h2>{{title}}</h2>
+			<h2 id="{{title}}">{{title}}</h2>
 			<p>{{description}}</p>
 
 			<div>
