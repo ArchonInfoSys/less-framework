@@ -5,35 +5,57 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
-
 	<title>CivicSource Style Guide</title>
+
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="https://jmblog.github.com/color-themes-for-highlightjs/css/themes/tomorrow-night.css" rel="stylesheet" />
+
+		<link href="demo/demo.less.css" rel="stylesheet" />
+		<link href="hedr/hedr.less.css" rel="stylesheet" />
 </head>
 
 <body>
-	<div class="container-fluid">
+	<div class="container">
+
 		<div class="jumbotron">
 			<h1>CivicSource Style Guide</h1>
-			<p>
-				Checkout the components below and view source to see how it is put together.
-				Also be sure to <a href="https://github.com/civicsource/less-framework">look at the code</a> that drives this.
-			</p>
+			<p>Base styles used to create a consistent CivicSource User Experience</p>
 		</div>
 
-		<link rel="stylesheet" href="hedr.less.css" />
+		<div class="alert alert-info">
+    Here is an important alert about styles.
+</div>
 
-<h1 id="-hedr-the-responsive-header"><code>hedr</code>, The Responsive Header</h1>
-<p>This component shows 3 columns, and collapses into alternate layouts based on viewport width:</p>
-<p>Large/Medium:</p>
-<pre><code>left  middle  right</code></pre>
-<p>Small:</p>
-<pre><code> left right 
-   middle</code></pre>
-<p>Extra Small:</p>
+<hr>
+
+		<hr />
+
+			<h2>Placeholder Component</h2>
+			<p>A placeholder component that turns stuff red</p>
+
+			<div>
+				<p>Here is a <span class="placeholder">placeholder</span>
+Add a reference to <code>demo.less</code> and use it like so:</p>
+<pre><code class="lang-html">&lt;span class=&quot;placeholder&quot;&gt;placeholder&lt;/span&gt;
+</code></pre>
+
+			</div>
+
+			<hr />
+			<h2>Responsive Header</h2>
+			<p>This component shows 3 columns, and collapses into alternate layouts based on viewport width</p>
+
+			<div>
+				<p>Large/Medium:</p>
+<pre><code>left  middle  right
+</code></pre><p>Small:</p>
+<pre><code> left right
+   middle
+</code></pre><p>Extra Small:</p>
 <pre><code>left
 right
-middle</code></pre>
-<h2 id="example">Example</h2>
+middle
+</code></pre><h2 id="example">Example</h2>
 <div class="hedr__container">
     <div class="clearfix">
         <div class="col-md-4 col-sm-6">
@@ -83,8 +105,12 @@ middle</code></pre>
             &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+</code></pre>
 
+			</div>
+
+			<hr />
 	</div>
 </body>
 </html>
